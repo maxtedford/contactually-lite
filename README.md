@@ -11,22 +11,29 @@ back to the user. This is an un-timed exercise.
 - Built in Ruby on Rails.
 - Allow a user to upload a tab-delimited file of contacts via a web form. The
   file will contain the following columns: `first_name`, `last_name`, `email_address`,
-  `phone_number`, `company_name`. There's an example file included (data.csv).
+  `phone_number`, `company_name`. There's an example file included (data.tsv).
 - Parse the given file, normalize the data, and store the information in a
   relational database.
 - Display the list of contacts and their data.
 - Accompanying specs written in [Rspec](https://github.com/rspec/rspec-core)
-- (**Bonus**) Allow deleting specific contacts via Ajax.
+- Allow deleting specific contacts via Ajax.
+- Allow the list of contacts to be filtered via Javascript to show:
+  - Only contacts with international numbers (US international numbers included)
+  - Only contacts numbers with an extension
+  - Only contacts with `.com` email addresses
+  - Order the contacts alphabetically by email address
+
+Use of gems and jQuery is allowed, but no pre-built table-sorting libraries please.
 
 ##### Submission Instructions
 
-- Use separate commits for each solution and put an explanation of your solution in the
-  commit message. Don't squash your commits.
+- Break up your work into separate/logical commits.
 - You can use as many branches as you need in order to organize your work, but you must
-  make sure your completed code is on the master branch before bundling up your work.
+  make sure your completed code is on the `master` branch before bundling up your work.
 - Your code should be clear and well-documented.
 
-When you're done, use `git bundle` to bundle up the repo and email it as an attachment to **hw@contactually.com**.
+When you're done, use `git bundle` to bundle up the repo and email it as an attachment
+to **hw@contactually.com**.
 
 **NOTE:**
 Your application *does not* need to handle authentication or authorization.
