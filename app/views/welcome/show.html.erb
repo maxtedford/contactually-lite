@@ -1,1 +1,8 @@
 <h1>Welcome to Contactually-Lite!</h1>
+
+<h3>Upload your contacts here:</h3>
+<%= form_tag({controller: "contacts", action: "create", method: "post"}, multipart: true) do %>
+  <%= file_field_tag "contacts" %>
+  <br>
+  <%= submit_tag "upload" %>
+<% end %>
