@@ -4,7 +4,7 @@ describe "the user", type: :feature do
   context "when visiting the root page" do
     
     before(:each) { visit root_path }
-    @file = fixture_file_upload("data.tsv")
+    @file = Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/data.tsv'), 'data.tsv')
     
     it "will see a welcome message" do
       expect(page).to have_content("Welcome to Contactually-Lite!")
@@ -23,7 +23,7 @@ describe "the user", type: :feature do
     end
     
     it "will post the file" do
-      attach_file(@file)
+      attach_file("contacts", "spec/fixtures/data.tsv")
       click_button("upload")
       
       expect(current_path).to eq(contacts_path)

@@ -2,6 +2,9 @@ require 'csv'
 
 class ContactsController < ApplicationController
   
+  def index
+  end
+  
   def create
     file_path = params[:contacts].tempfile.to_path.to_s
     text = File.read(file_path, {encoding: "UTF-8"})
@@ -12,7 +15,7 @@ class ContactsController < ApplicationController
                       email_address: row[:email_address],
                       phone_number:  row[:phone_number],
                       company_name:  row[:company_name])
-      redirect_to contacts_path
     end
+    redirect_to contacts_path
   end
 end
