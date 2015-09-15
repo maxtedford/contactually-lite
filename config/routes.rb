@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
   root "welcome#show"
   
-  resources :contacts, only: [:create]
+  resources :contacts, only: [:index, :create]
 end

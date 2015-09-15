@@ -4,6 +4,7 @@ describe "the user", type: :feature do
   context "when visiting the root page" do
     
     before(:each) { visit root_path }
+    @file = fixture_file_upload("data.tsv")
     
     it "will see a welcome message" do
       expect(page).to have_content("Welcome to Contactually-Lite!")
@@ -19,6 +20,13 @@ describe "the user", type: :feature do
     
     it "will see a submit button" do
       expect(page).to have_button("upload")
+    end
+    
+    it "will post the file" do
+      attach_file(@file)
+      click_button("upload")
+      
+      expect(current_path).to eq(contacts_path)
     end
   end
 end
