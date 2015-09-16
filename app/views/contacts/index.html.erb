@@ -7,9 +7,9 @@
       <h4><%= contact.email_address %></h4>
       <% if contact.extension == "" %>
         <h4><%= contact.country_code %> <%= contact.phone_number %></h4>
-    <% else %>
+      <% else %>
         <h4><%= contact.country_code %> <%= contact.phone_number %> x<%= contact.extension %></h4>
-    <% end %>
+      <% end %>
       <button href="">Delete</button>
     </li>
   <% end %>
