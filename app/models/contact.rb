@@ -9,5 +9,4 @@ class Contact < ActiveRecord::Base
     presence: true
   validates :company_name,
     presence: true
-  
 end

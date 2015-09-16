@@ -23,10 +23,10 @@ ActiveRecord::Schema.define(version: 20150916040324) do
     t.string   "country_code"
     t.string   "phone_number"
     t.string   "company_name"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "extension"
-    t.boolean  "international"
+    t.boolean  "international", default: false
   end
 
 end

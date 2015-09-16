@@ -9,7 +9,8 @@ RSpec.describe Contact, type: :model do
                                country_code: "1", 
                                phone_number: "1234567890", 
                                extension: "555", 
-                               company_name: "john smith ltd." } }
+                               company_name: "john smith ltd.",
+                               international: true } }
     
     it "is valid" do
       contact = Contact.create(valid_attributes)
@@ -23,7 +24,8 @@ RSpec.describe Contact, type: :model do
                                country_code: "1",
                                phone_number: "1234567890",
                                extension: "555",
-                               company_name: "john smith ltd.")
+                               company_name: "john smith ltd.",
+                               international: true)
       
       expect(contact).not_to be_valid
     end
@@ -34,7 +36,8 @@ RSpec.describe Contact, type: :model do
                                country_code: "1",
                                phone_number: "1234567890",
                                extension: "555",
-                               company_name: "john smith ltd.")
+                               company_name: "john smith ltd.",
+                               international: true)
 
       expect(contact).not_to be_valid
     end
@@ -45,7 +48,8 @@ RSpec.describe Contact, type: :model do
                                country_code: "1",
                                phone_number: "1234567890",
                                extension: "555",
-                               company_name: "john smith ltd.")
+                               company_name: "john smith ltd.",
+                               international: true)
       
       expect(contact).not_to be_valid
     end
@@ -56,7 +60,8 @@ RSpec.describe Contact, type: :model do
                                email_address: "johnsmith@fake.com",
                                phone_number: "1234567890",
                                extension: "555",
-                               company_name: "john smith ltd.")
+                               company_name: "john smith ltd.",
+                               international: true)
       
       expect(contact).to be_valid
     end
@@ -67,7 +72,8 @@ RSpec.describe Contact, type: :model do
                                email_address: "johnsmith@fake.com",
                                country_code: "1",
                                extension: "555",
-                               company_name: "john smith ltd.")
+                               company_name: "john smith ltd.",
+                               international: true)
       
       expect(contact).not_to be_valid
     end
@@ -78,7 +84,8 @@ RSpec.describe Contact, type: :model do
                                email_address: "johnsmith@fake.com",
                                country_code: "1",
                                phone_number: "1234567890",
-                               company_name: "john smith ltd.")
+                               company_name: "john smith ltd.",
+                               international: true)
       
       expect(contact).to be_valid
     end
@@ -89,9 +96,23 @@ RSpec.describe Contact, type: :model do
                                email_address: "johnsmith@fake.com",
                                country_code: "1",
                                phone_number: "1234567890",
-                               extension: "555")
+                               extension: "555",
+                               international: true)
       
       expect(contact).not_to be_valid
+    end
+    
+    it "will default to a falsy international attribute" do
+      contact = Contact.create(first_name: "john",
+                               last_name: "smith",
+                               email_address: "johnsmith@fake.com",
+                               country_code: "1",
+                               phone_number: "1234567890",
+                               extension: "555",
+                               company_name: "john smith ltd.")
+      
+      expect(contact).to be_valid
+      expect(contact.international).to eq(false)
     end
   end
 end
