@@ -4,18 +4,18 @@ require 'phone'
 class ContactsController < ApplicationController
   
   def index
+    @contacts = Contact.all
   end
   
   def create
     Phoner::Phone.default_country_code = '1'
-    set_tsv(contact_params).each do |row|
+    set_tsv(params[:contacts]).each do |row|
       pn = Phoner::Phone.parse(internationalize(row[:phone_number]))
-      binding.pry
       Contact.create!(first_name:    row[:first_name],
                       last_name:     row[:last_name],
                       email_address: row[:email_address],
                       country_code:  pn.format("%c"),
-                      phone_number:  pn.format("%A%f%l"),
+                      phone_number:  pn.format("(%a) %f-%l"),
                       extension:     pn.format("%x"),
                       company_name:  row[:company_name])
     end
