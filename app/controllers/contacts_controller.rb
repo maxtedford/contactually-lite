@@ -23,6 +23,11 @@ class ContactsController < ApplicationController
     redirect_to contacts_path
   end
   
+  def destroy
+    @contact = Contact.find(params[:id])
+    @contact.destroy
+  end
+  
   private
   
   def normalize(pn)
