@@ -9,7 +9,8 @@ class ContactsController < ApplicationController
   
   def create
     Phoner::Phone.default_country_code = '1'
-    set_tsv(params[:contacts]).each do |row|
+    tsv_file = Parser.new(params[:contacts]).set_tsv
+    tsv_file.each do |row|
       pn = Phoner::Phone.parse(internationalize(row[:phone_number]))
       Contact.create!(first_name:    row[:first_name],
                       last_name:     row[:last_name],
@@ -33,12 +34,6 @@ class ContactsController < ApplicationController
   
   def normalize(pn)
     pn.gsub(/[^0-9A-Za-z]/, '')
-  end
-
-  def set_tsv(params)
-    file_path = params.tempfile.to_path.to_s
-    text = File.read(file_path, {encoding: "UTF-8"})
-    CSV.parse(text, headers: true, header_converters: :symbol, col_sep: "\t")
   end
   
   def check_international(row)
