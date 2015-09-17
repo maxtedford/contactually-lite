@@ -25,15 +25,5 @@ describe "the user", type: :feature do
       expect(page).to have_button("Delete")
       expect(page.all(:css, 'button.delete-button').length).to eq(200)
     end
-    
-    xit "can delete a contact by clicking the delete button" do
-      expect(page.all(:css, 'button').length).to eq(200)
-      expect(Contact.count).to eq(200)
-      expect(all(".delete-button").count).to eq(200)
-      
-      first(".delete-button").click
-      
-      expect(Contact.count).to eq(199)
-    end
   end
 end
