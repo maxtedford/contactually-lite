@@ -3,6 +3,7 @@ $(document).ready(function() {
   bindInternationalFilterHandler();
   bindExtensionFilterHandler();
   bindDotComEmailFilterHandler();
+  bindEmailSortHandler();
 });
 
 function bindDeleteHandlers() {
@@ -74,4 +75,27 @@ function filterDotComEmails() {
   $nonDotComs.each(function(_index, _contact) {
     $(this).toggle();
   });
+}
+
+function bindEmailSortHandler() {
+  $('#sort-by-email-address').on('click', function(event) {
+    event.preventDefault();
+    sortByEmail();
+  })
+}
+
+function sortByEmail() {
+  var arr = [];
+  
+  $('.contact').each(function() {
+    var email = $(this).data().email;
+    arr.push([email, $(this)]);
+    $(this).remove()
+  });
+  
+  var sorted = arr.sort();
+  
+  sorted.forEach(function(element) {
+    $('#contacts').append(element[1]);
+  })
 }
