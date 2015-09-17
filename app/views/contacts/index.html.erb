@@ -12,7 +12,7 @@ Fiter List:
   <% @contacts.each do |contact| %>
     <li class="contact" data-id="<%= contact.id %>" data-international="<%= contact.international %>" data-extension="<%= contact.extension %>" data-email="<%= contact.email_address %>">
       <h2><%= contact.first_name %> <%= contact.last_name %> (<%= contact.company_name %>)</h2>
-      <h4><%= contact.email_address %></h4>
+      <h4 class="contact-email"><%= contact.email_address %></h4>
       <% if contact.extension == "" %>
         <h4><%= contact.country_code %> <%= contact.phone_number %></h4>
       <% else %>

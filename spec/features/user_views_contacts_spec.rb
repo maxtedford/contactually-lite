@@ -16,12 +16,12 @@ describe "the user", type: :feature do
       expect(page).to have_content("gerhardkautzer@cronabayer.com")
       expect(page).to have_content("1 (207) 643-1816")
       expect(page.all(:css, 'h2').length).to eq(200)
-      expect(page.all(:css, 'h4').length).to eq(400)
+      expect(page.all(:css, 'h4.contact-email').length).to eq(200)
     end
 
     it "can see a delete button for each contact" do
       expect(page).to have_button("Delete")
-      expect(page.all(:css, 'button').length).to eq(200)
+      expect(page.all(:css, 'button.delete-button').length).to eq(200)
     end
     
     xit "can delete a contact by clicking the delete button" do
