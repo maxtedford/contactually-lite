@@ -4,11 +4,12 @@
 Fiter List:
 <button href="" id="international-filter-button">International Numbers</button>
 <button href="" id="extension-filter-button">Contacts with Extensions</button>
+<button href="" id=".com-filter-button">Contacts with .com Email Addresses</button>
 </h4>
 
 <ul id="contacts">
   <% @contacts.each do |contact| %>
-    <li class="contact" data-id="<%= contact.id %>" data-international="<%= contact.international %>" data-extension="<%= contact.extension %>">
+    <li class="contact" data-id="<%= contact.id %>" data-international="<%= contact.international %>" data-extension="<%= contact.extension %>" data-email="<%= contact.email_address %>">
       <h2><%= contact.first_name %> <%= contact.last_name %> (<%= contact.company_name %>)</h2>
       <h4><%= contact.email_address %></h4>
       <% if contact.extension == "" %>
