@@ -19,28 +19,36 @@ function bindDeleteHandlers() {
 function bindAllHandler($contacts){
   $('#all').on('click', function(event) {
     event.preventDefault();
+    deactivateButtons();
     unFilterAll($contacts);
+    $(this).toggleClass('active');
   })
 }
 
 function bindInternationalFilterHandler($contacts) {
   $('#international-filter-button').on('click', function(event) {
     event.preventDefault();
+    deactivateButtons();
     filterInternationalContacts($contacts);
+    $(this).toggleClass('active');
   })
 }
 
 function bindExtensionFilterHandler($contacts) {
   $('#extension-filter-button').on('click', function(event) {
     event.preventDefault();
+    deactivateButtons();
     filterExtensions($contacts);
+    $(this).toggleClass('active');
   })
 }
 
 function bindDotComEmailFilterHandler($contacts) {
   $('#dot-com-filter-button').on('click', function(event) {
     event.preventDefault();
+    deactivateButtons();
     filterDotComEmails($contacts);
+    $(this).toggleClass('active');
   })
 }
 
@@ -48,7 +56,13 @@ function bindEmailSortHandler() {
   $('#sort-by-email-address').on('click', function(event) {
     event.preventDefault();
     sortByEmail();
+    deactivateButtons();
+    $(this).toggleClass('active');
   })
+}
+
+function deactivateButtons() {
+  $('button').removeClass('active');
 }
 
 function deleteContact(contact) {
@@ -112,5 +126,7 @@ function sortByEmail() {
   
   sortedContacts.forEach(function(element) {
     $('#contacts').append(element[1]);
-  })
+  });
+  
+  $(this).toggleClass('active')
 }
