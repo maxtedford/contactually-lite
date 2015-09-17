@@ -14,3 +14,38 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+// WELCOME PAGE //
+
+#welcome-title {
+  text-align: center;
+}
+
+#upload-title {
+  text-align: center;
+}
+
+input[type="file"] {
+  display: inline;
+  text-align: center;
+  padding-left: 90px;
+  margin: 20px 0;
+}
+
+form {
+  text-align: center;
+}
+
+#contacts-title {
+  text-align: center;
+}
+
+.filter-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sort-button {
+  margin-top: 10px;
+}

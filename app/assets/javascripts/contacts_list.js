@@ -1,6 +1,7 @@
 $(document).ready(function() {
   var $contacts = $('.contact');
   bindDeleteHandlers();
+  bindAllHandler($contacts);
   bindInternationalFilterHandler($contacts);
   bindExtensionFilterHandler($contacts);
   bindDotComEmailFilterHandler($contacts);
@@ -10,8 +11,15 @@ $(document).ready(function() {
 function bindDeleteHandlers() {
   $('.delete-button').on('click', function(event) {
     event.preventDefault();
-    var contact = $(this).parent();
+    var contact = $(this).closest('tr');
     deleteContact(contact);
+  })
+}
+
+function bindAllHandler($contacts){
+  $('#all').on('click', function(event) {
+    event.preventDefault();
+    unFilterAll($contacts);
   })
 }
 
@@ -46,8 +54,8 @@ function bindEmailSortHandler() {
 function deleteContact(contact) {
   var contactId = contact.data().id;
   $.ajax({
-    url: "/contacts/" + contactId,
-    type: "DELETE",
+    url: '/contacts/' + contactId,
+    type: 'DELETE',
     data: { id: contactId },
     complete: function() {
       contact.remove();
@@ -55,7 +63,14 @@ function deleteContact(contact) {
   })
 }
 
+function unFilterAll($contacts) {
+  $contacts.each(function(_index, contact) {
+    $(contact).show();
+  })
+}
+
 function filterInternationalContacts($contacts) {
+  unFilterAll($contacts);
   var $domesticContacts = $contacts.filter(function(_index, contact) {
     return !$(contact).data().international;
   });
@@ -65,6 +80,7 @@ function filterInternationalContacts($contacts) {
 }
 
 function filterExtensions($contacts) {
+  unFilterAll($contacts);
   var $nonExtensions = $contacts.filter(function(_index, contact) {
     return $(contact).data().extension === "";
   });
@@ -74,6 +90,7 @@ function filterExtensions($contacts) {
 }
 
 function filterDotComEmails($contacts) {
+  unFilterAll($contacts);
   var $nonDotComs = $contacts.filter(function(_index, contact) {
     return !$(contact).data().email.includes('.com');
   });

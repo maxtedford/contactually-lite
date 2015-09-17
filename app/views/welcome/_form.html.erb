@@ -1,6 +1,6 @@
-<h3>Upload your contacts here:</h3>
+<h3 id="upload-title">Upload your contacts here:</h3>
 <%= form_tag({controller: "contacts", action: "create", method: "post"}, multipart: true) do %>
   <%= file_field_tag "contacts" %>
   <br>
-  <%= submit_tag "upload" %>
+  <%= submit_tag "upload", class: "btn btn-default" %>
 <% end %>
