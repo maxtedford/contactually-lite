@@ -57,7 +57,7 @@ function deleteContact(contact) {
 
 function filterInternationalContacts($contacts) {
   var $domesticContacts = $contacts.filter(function(_index, contact) {
-    return $(contact).data().international;
+    return !$(contact).data().international;
   });
   $domesticContacts.each(function(_index, contact) {
     $(contact).toggle();
