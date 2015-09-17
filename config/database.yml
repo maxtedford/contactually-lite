@@ -5,8 +5,8 @@ default: &default
 
 development:
   <<: *default
-  database: contactually-lite
+  database: contactually-lite-development
 
 test:
   <<: *default
-  database: contactually-lite
+  database: contactually-lite-test
