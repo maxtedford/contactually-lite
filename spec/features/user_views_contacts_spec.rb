@@ -12,11 +12,13 @@ describe "the user", type: :feature do
     }
     
     it "can see all his/her contacts" do
-      expect(page).to have_content("Gerhard Kautzer (Hodkiewicz-Lynch)")
+      expect(page).to have_content("Gerhard")
+      expect(page).to have_content("Kautzer")
+      expect(page).to have_content("Hodkiewicz-Lynch")
       expect(page).to have_content("gerhardkautzer@cronabayer.com")
-      expect(page).to have_content("1 (207) 643-1816")
-      expect(page.all(:css, 'h2').length).to eq(200)
-      expect(page.all(:css, 'h4.contact-email').length).to eq(200)
+      expect(page).to have_content("+1 (207) 643-1816")
+      expect(page.all(:css, 'tr').length).to eq(201)
+      expect(page.all(:css, 'td.contact-email').length).to eq(200)
     end
 
     it "can see a delete button for each contact" do
