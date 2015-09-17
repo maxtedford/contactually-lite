@@ -34,9 +34,22 @@ describe ContactsController do
 
       upload_file = fixture_file_upload("data.tsv", "text/tab-separated-values")
       post :create, { contacts: upload_file }
+      first_contact = Contact.first
+      twentieth_contact = Contact.find(20)
 
       expect(response).to have_http_status(:found)
       expect(Contact.count).to eq(200)
+      expect(first_contact.first_name).to eq("Gerhard")
+      expect(first_contact.last_name).to eq("Kautzer")
+      expect(first_contact.company_name).to eq("Hodkiewicz-Lynch")
+      expect(first_contact.email_address).to eq("gerhardkautzer@cronabayer.com")
+      expect(first_contact.country_code).to eq("1")
+      expect(first_contact.phone_number).to eq("(207) 643-1816")
+      expect(first_contact.extension).to eq("")
+      expect(first_contact.international).to be_truthy
+      expect(twentieth_contact.first_name).to eq("Kaycee")
+      expect(twentieth_contact.country_code).to eq("1")
+      expect(twentieth_contact.international).to be_falsey
     end
   end
 
