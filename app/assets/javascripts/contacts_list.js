@@ -1,6 +1,7 @@
 $(document).ready(function() {
   bindDeleteHandlers();
   bindInternationalFilterHandler();
+  bindExtensionFilterHandler();
 });
 
 function bindDeleteHandlers() {
@@ -34,6 +35,23 @@ function filterInternationalContacts() {
   var $contacts = $('.contact');
   var $domesticContacts = $contacts.filter(function(_index, _contact) {
     return $(this).data().international;
+  });
+  $domesticContacts.each(function(_index, _contact) {
+    $(this).toggle();
+  });
+}
+
+function bindExtensionFilterHandler() {
+  $('#extension-filter-button').on('click', function(event) {
+    event.preventDefault();
+    filterExtensions();
+  })
+}
+
+function filterExtensions() {
+  var $contacts = $('.contact');
+  var $domesticContacts = $contacts.filter(function(_index, _contact) {
+    return $(this).data().extension === "";
   });
   $domesticContacts.each(function(_index, _contact) {
     $(this).toggle();
