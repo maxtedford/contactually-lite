@@ -2,6 +2,7 @@ $(document).ready(function() {
   bindDeleteHandlers();
   bindInternationalFilterHandler();
   bindExtensionFilterHandler();
+  bindDotComEmailFilterHandler();
 });
 
 function bindDeleteHandlers() {
@@ -50,10 +51,27 @@ function bindExtensionFilterHandler() {
 
 function filterExtensions() {
   var $contacts = $('.contact');
-  var $domesticContacts = $contacts.filter(function(_index, _contact) {
+  var $nonExtensions = $contacts.filter(function(_index, _contact) {
     return $(this).data().extension === "";
   });
-  $domesticContacts.each(function(_index, _contact) {
+  $nonExtensions.each(function(_index, _contact) {
+    $(this).toggle();
+  });
+}
+
+function bindDotComEmailFilterHandler() {
+  $('#dot-com-filter-button').on('click', function(event) {
+    event.preventDefault();
+    filterDotComEmails();
+  })
+}
+
+function filterDotComEmails() {
+  var $contacts = $('.contact');
+  var $nonDotComs = $contacts.filter(function(_index, _contact) {
+    return !$(this).data().email.includes('.com');
+  });
+  $nonDotComs.each(function(_index, _contact) {
     $(this).toggle();
   });
 }
