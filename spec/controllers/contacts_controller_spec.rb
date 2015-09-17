@@ -29,7 +29,7 @@ describe ContactsController do
   end
   
   context '#create' do
-    it 'creates the best poptart' do
+    it 'creates the contacts' do
       expect(Contact.count).to eq(0)
 
       upload_file = fixture_file_upload("data.tsv", "text/tab-separated-values")
@@ -54,7 +54,7 @@ describe ContactsController do
   end
 
   context '#destroy' do
-    it 'destroys disgusting poptarts' do
+    it 'destroys unwanted contacts' do
       contact = Contact.create(
         first_name: "john",
         last_name: "smith",
