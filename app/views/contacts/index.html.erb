@@ -5,9 +5,9 @@ Fiter List:
 <button href="" id="international-filter-button">International Numbers</button>
 </h4>
 
-<ul>
+<ul id="contacts">
   <% @contacts.each do |contact| %>
-    <li data-id="<%= contact.id %>">
+    <li class="contact" data-id="<%= contact.id %>" data-international="<%= contact.international %>">
       <h2><%= contact.first_name %> <%= contact.last_name %> (<%= contact.company_name %>)</h2>
       <h4><%= contact.email_address %></h4>
       <% if contact.extension == "" %>
