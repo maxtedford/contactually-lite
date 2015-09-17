@@ -1,8 +1,9 @@
 $(document).ready(function() {
+  var $contacts = $('.contact');
   bindDeleteHandlers();
-  bindInternationalFilterHandler();
-  bindExtensionFilterHandler();
-  bindDotComEmailFilterHandler();
+  bindInternationalFilterHandler($contacts);
+  bindExtensionFilterHandler($contacts);
+  bindDotComEmailFilterHandler($contacts);
   bindEmailSortHandler();
 });
 
@@ -11,6 +12,34 @@ function bindDeleteHandlers() {
     event.preventDefault();
     var contact = $(this).parent();
     deleteContact(contact);
+  })
+}
+
+function bindInternationalFilterHandler($contacts) {
+  $('#international-filter-button').on('click', function(event) {
+    event.preventDefault();
+    filterInternationalContacts($contacts);
+  })
+}
+
+function bindExtensionFilterHandler($contacts) {
+  $('#extension-filter-button').on('click', function(event) {
+    event.preventDefault();
+    filterExtensions($contacts);
+  })
+}
+
+function bindDotComEmailFilterHandler($contacts) {
+  $('#dot-com-filter-button').on('click', function(event) {
+    event.preventDefault();
+    filterDotComEmails($contacts);
+  })
+}
+
+function bindEmailSortHandler() {
+  $('#sort-by-email-address').on('click', function(event) {
+    event.preventDefault();
+    sortByEmail();
   })
 }
 
@@ -26,62 +55,31 @@ function deleteContact(contact) {
   })
 }
 
-function bindInternationalFilterHandler() {
-  $('#international-filter-button').on('click', function(event) {
-    event.preventDefault();
-    filterInternationalContacts();
-  })
-}
-
-function filterInternationalContacts() {
-  var $contacts = $('.contact');
-  var $domesticContacts = $contacts.filter(function(_index, _contact) {
-    return $(this).data().international;
+function filterInternationalContacts($contacts) {
+  var $domesticContacts = $contacts.filter(function(_index, contact) {
+    return $(contact).data().international;
   });
-  $domesticContacts.each(function(_index, _contact) {
-    $(this).toggle();
+  $domesticContacts.each(function(_index, contact) {
+    $(contact).toggle();
   });
 }
 
-function bindExtensionFilterHandler() {
-  $('#extension-filter-button').on('click', function(event) {
-    event.preventDefault();
-    filterExtensions();
-  })
-}
-
-function filterExtensions() {
-  var $contacts = $('.contact');
-  var $nonExtensions = $contacts.filter(function(_index, _contact) {
-    return $(this).data().extension === "";
+function filterExtensions($contacts) {
+  var $nonExtensions = $contacts.filter(function(_index, contact) {
+    return $(contact).data().extension === "";
   });
-  $nonExtensions.each(function(_index, _contact) {
-    $(this).toggle();
+  $nonExtensions.each(function(_index, contact) {
+    $(contact).toggle();
   });
 }
 
-function bindDotComEmailFilterHandler() {
-  $('#dot-com-filter-button').on('click', function(event) {
-    event.preventDefault();
-    filterDotComEmails();
-  })
-}
-
-function filterDotComEmails() {
-  var $contacts = $('.contact');
-  var $nonDotComs = $contacts.filter(function(_index, _contact) {
-    return !$(this).data().email.includes('.com');
+function filterDotComEmails($contacts) {
+  var $nonDotComs = $contacts.filter(function(_index, contact) {
+    return !$(contact).data().email.includes('.com');
   });
-  $nonDotComs.each(function(_index, _contact) {
-    $(this).toggle();
+  $nonDotComs.each(function(_index, contact) {
+    $(contact).toggle();
   });
-}
-
-function bindEmailSortHandler() {
-  $('#sort-by-email-address').on('click', function(event) {
-    event.preventDefault();
-    sortByEmail();
-  })
 }
 
 function sortByEmail() {
@@ -93,9 +91,9 @@ function sortByEmail() {
     $(this).remove()
   });
   
-  var sorted = arr.sort();
+  var sortedContacts = arr.sort();
   
-  sorted.forEach(function(element) {
+  sortedContacts.forEach(function(element) {
     $('#contacts').append(element[1]);
   })
 }
