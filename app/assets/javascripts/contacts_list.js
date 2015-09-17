@@ -1,3 +1,5 @@
+// KICKOFF EVENT-BINDERS //
+
 $(document).ready(function() {
   var $contacts = $('.contact');
   bindDeleteHandlers();
@@ -7,6 +9,8 @@ $(document).ready(function() {
   bindDotComEmailFilterHandler($contacts);
   bindEmailSortHandler();
 });
+
+// EVENT-BINDERS //
 
 function bindDeleteHandlers() {
   $('.delete-button').on('click', function(event) {
@@ -60,6 +64,8 @@ function bindEmailSortHandler() {
     $(this).toggleClass('active');
   })
 }
+
+// DOM-MANIPULATORS //
 
 function deactivateButtons() {
   $('button').removeClass('active');
