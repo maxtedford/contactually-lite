@@ -132,10 +132,6 @@ GEM
     rainbow (2.0.0)
     rake (10.4.2)
     rdoc (4.2.0)
-    rspec (3.3.0)
-      rspec-core (~> 3.3.0)
-      rspec-expectations (~> 3.3.0)
-      rspec-mocks (~> 3.3.0)
     rspec-core (3.3.2)
       rspec-support (~> 3.3.0)
     rspec-expectations (3.3.1)
@@ -218,7 +214,6 @@ DEPENDENCIES
   phone
   pry
   rails (= 4.2.1)
-  rspec
   rspec-rails (~> 3.0)
   rubocop
   sass-rails (~> 5.0)
