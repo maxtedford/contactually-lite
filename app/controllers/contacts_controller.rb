@@ -8,9 +8,7 @@ class ContactsController < ApplicationController
   end
   
   def create
-    Phoner::Phone.default_country_code = '1'
-    tsv_file = Parser.new(params[:contacts_file]).set_tsv
-    tsv_file.each do |row|
+   FileUploader.new(params[:contacts_file]).to_tsv.each do |row|
       pn = Phoner::Phone.parse(Normalizer.new(row[:phone_number]).internationalize)
       Contact.create!(first_name:    row[:first_name],
                       last_name:     row[:last_name],
