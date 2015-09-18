@@ -33,7 +33,7 @@ describe ContactsController, type: :controller do
       expect(Contact.count).to eq(0)
 
       upload_file = fixture_file_upload("data.tsv", "text/tab-separated-values")
-      post :create, { contacts: upload_file }
+      post :create, { contacts_file: upload_file }
       first_contact = Contact.first
       twentieth_contact = Contact.find(20)
 

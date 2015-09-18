@@ -7,7 +7,7 @@ describe "the user", type: :feature do
       DatabaseCleaner.start
       DatabaseCleaner.clean
       visit root_path
-      attach_file("contacts", Rails.root.join("spec/fixtures/data.tsv"))
+      attach_file("contacts_file", Rails.root.join("spec/fixtures/data.tsv"))
       click_button("upload")
     }
     

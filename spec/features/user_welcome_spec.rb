@@ -26,7 +26,7 @@ describe "the user", type: :feature do
     end
     
     it "can post the file" do
-      attach_file("contacts", "spec/fixtures/data.tsv")
+      attach_file("contacts_file", "spec/fixtures/data.tsv")
       click_button("upload")
       
       expect(current_path).to eq(contacts_path)
