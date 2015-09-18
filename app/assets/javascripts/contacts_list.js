@@ -3,7 +3,7 @@
 $(document).ready(function() {
   var $contacts = $('.contact');
   bindDeleteHandlers();
-  bindAllHandler($contacts);
+  bindFilterAllHandler($contacts);
   bindInternationalFilterHandler($contacts);
   bindExtensionFilterHandler($contacts);
   bindDotComEmailFilterHandler($contacts);
@@ -20,7 +20,7 @@ function bindDeleteHandlers() {
   })
 }
 
-function bindAllHandler($contacts){
+function bindFilterAllHandler($contacts){
   $('#all').on('click', function(event) {
     event.preventDefault();
     deactivateButtons();
